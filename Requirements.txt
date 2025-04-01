@@ -1,0 +1,10 @@
+streamlit
+pandas
+chardet
+plotly
+google-generativeai
+python-dotenv
+langchain-core
+langchain-google-genai
+statsmodels
+scikit-learn
