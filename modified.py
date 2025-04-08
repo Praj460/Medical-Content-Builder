@@ -23,8 +23,23 @@ st.header("Medical Content builder")
 def get_gemini_response(question):
     try:
         model = genai.GenerativeModel('gemini-2.0-flash')
-       # model = genai.GenerativeModel('gemini-2.0-flash')
-        response = model.generate_content(question)
+       
+        structured_prompt = f"""
+        You are an AI-powered medical assistant. Provide an accurate, concise, and informative answer to the user's question below.
+
+        Question: {question}
+
+        Along with your response, include at least 2–3 relevant, authoritative URLs as references from trusted medical websites or scholarly sources at the end of your answer in the following format:
+
+        Answer: <Your concise answer>
+
+        References:
+        1. URL1
+        2. URL2
+        3. URL3 (optional)
+
+        """
+        response = model.generate_content(structured_prompt)
         return response.text
     except Exception as e:
         st.error(f"Error generating content: {e}")
